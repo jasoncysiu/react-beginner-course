@@ -23,9 +23,16 @@ export default function Checkout() {
     ]
   };
 
-  // destructure
+  // destructure cartItem
   let { cartItems } = cartItem;
   let cartEmpty = cartItems.length <= 0 ? true : false; // check if the cart is empty, if so let Y else N
+
+  // grandTotal
+  let grandTotal = cartItems.reduce((total, product) => {
+    return total += product.price * product.quantity
+  },0  )
+  let freeShippingPrice = 99
+
 
   return (
     <>
@@ -60,7 +67,20 @@ export default function Checkout() {
             </div>
 
             {/* right side - i  .e., 價錢總數 + 免費送貨*/}
-            <div id="checkOutSection"> </div>
+            <div id="checkOutSection"> 
+            {/* 價錢總數 */}
+            <div> 全部貨品總共： </div> 
+            <div> {grandTotal} </div>
+
+            {            /* 免費送貨 */
+            grandTotal >= freeShippingPrice ?
+            <div> 我們免費送貨 </div> :
+            <div> 滿${freeShippingPrice} 免費送貨 <br/> 還差 $ {freeShippingPrice - grandTotal}</div> 
+            }
+            
+            
+        
+            </div>
           </div>
         )
       }
