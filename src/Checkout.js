@@ -1,4 +1,5 @@
 import ProductList from "./ProductList";
+import QuantityBtn from "./QuantityBtn";
 import Title from "./Title";
 import { Link } from "react-router-dom";
 export default function Checkout() {
@@ -61,6 +62,7 @@ export default function Checkout() {
                   {product.description}
                   {product.price}
                   {product.quantity}
+                  <QuantityBtn/>
                 </div>
                 )
               )}
